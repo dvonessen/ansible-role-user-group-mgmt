@@ -1,0 +1,19 @@
+---
+galaxy_info:
+  author: Daniel von Essen
+  description: This role creates users, primary user groups, and general groups.
+  license: MIT
+
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: CentOS
+      versions:
+       - 8
+    - name: Debian
+      versions:
+        - 10
+
+  galaxy_tags: [user, group, mgmt, system, linux]
+
+dependencies: []

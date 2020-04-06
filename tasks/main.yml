@@ -1,0 +1,29 @@
+---
+- name: include os dependent variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - files:
+        - "{{ ansible_distribution | lower }}{{ ansible_distribution_major_version }}.yml"
+        - "{{ ansible_distribution | lower }}.yml"
+        - "{{ ansible_os_family | lower }}.yml"
+      skip: true
+  tags:
+    - always
+
+- name: include group management
+  include_tasks: group.yml
+  loop: "{{ query('dict', user_group_mgmt_groups) }}"
+  loop_control:
+    loop_var: group
+  tags:
+    - user_group_mgmt_all
+    - user_group_mgmt_group
+
+- name: include user management
+  include_tasks: user.yml
+  loop: "{{ query('dict', user_group_mgmt_users) }}"
+  loop_control:
+    loop_var: user
+  tags:
+    - user_group_mgmt_all
+    - user_group_mgmt_user

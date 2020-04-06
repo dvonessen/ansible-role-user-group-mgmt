@@ -1,0 +1,27 @@
+---
+- name: Converge
+  hosts: all
+  remote_user: ansible
+  strategy: debug
+  roles:
+    - role: ansible-role-user-group-mgmt
+  vars:
+    user_group_mgmt_groups:
+      backup: 1111
+      test: 1112
+    user_group_mgmt_users:
+      user1:
+        uid: 10001
+        comment: test user 1
+        shell: /bin/zsh
+        groups:
+          - backup
+          - test
+        state: absent
+        ssh:
+          comment: Public key for user1
+          public_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJN0x8Ku3GykvXdpKmLoA5h61ffv4LB7OPFK7kgZkkta
+      user2:
+        uid: 1002
+        ssh:
+          public_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEFRBB50poAeGaEsVhzNUIEYIO4M3ue5/fuzfK19xgvH

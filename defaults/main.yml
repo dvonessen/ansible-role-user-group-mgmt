@@ -1,0 +1,18 @@
+---
+user_group_mgmt_groups: {}
+# Simple example:
+#  backup(mandatory): 12345(int) -> GID
+
+user_group_mgmt_users: {}
+#  username(mandatory):
+#    uid(mandatory): 25000(int)
+#    comment: GECOS comment(string)
+#    shell: /bin/zsh(string)
+#    create_home: yes(boolean)
+#    groups: (list)
+#      - httpd (string)
+#    state(mandatory): absent(present|absent)
+#    ssh(mandatory): (dict)
+#      comment: username(string)
+#      public_key(mandatory): ssh-public-key(string)
+#      key_options: (string)

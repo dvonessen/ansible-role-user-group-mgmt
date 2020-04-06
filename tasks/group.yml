@@ -1,0 +1,19 @@
+---
+- name: get group state
+  set_fact:
+    __group_state: "{{ group.value.state | default('present') }}"
+
+- name: create group
+  group:
+    name: "{{ group.key }}"
+    gid: "{{ group.value }}"
+    state: "{{ __group_state }}"
+  become: true
+  when: __group_state == "present"
+
+- name: delete group
+  group:
+    name: "{{ group.key }}"
+    state: "{{ __group_state }}"
+  become: true
+  when: __group_state == "absent"

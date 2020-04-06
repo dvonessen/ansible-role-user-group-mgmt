@@ -1,0 +1,35 @@
+---
+- name: get user state
+  set_fact:
+    __user_state: "{{ user.value.state | default('present') }}"
+
+- name: create user
+  user:
+    name: "{{ user.key }}"
+    uid: "{{ user.value.uid | int }}"
+    comment: "{{ user.value.comment | default(user.key) }}"
+    shell: "{{ user.value.shell | default('/bin/zsh') }}"
+    create_home: "{{ user.value.create_home | default('yes') }}"
+    groups: "{{ user.value.groups | default(omit) }}"
+    append: yes
+    state: "{{ __user_state }}"
+  become: true
+  when: __user_state == "present"
+
+- name: set autorized public keys for user
+  authorized_key:
+    user: "{{ user.key }}"
+    comment: "{{ user.value.ssh.comment | default(user.key) }}"
+    key: "{{ user.value.ssh.public_key }}"
+    key_options: "{{ user.value.ssh.options | default(omit) }}"
+    state: "{{ __user_state }}"
+  become: true
+  when: __user_state == "present"
+
+- name: delete user and its home
+  user:
+    name: "{{ user.key }}"
+    remove: yes
+    state: "{{ __user_state }}"
+  become: true
+  when: __user_state == "absent"
