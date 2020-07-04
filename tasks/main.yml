@@ -8,7 +8,9 @@
         - "{{ ansible_os_family | lower }}.yml"
       skip: true
   tags:
-    - always
+    - user_group_mgmt_all
+    - user_group_mgmt_group
+    - user_group_mgmt_user
 
 - name: include group management
   include_tasks: group.yml
