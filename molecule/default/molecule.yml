@@ -10,6 +10,12 @@ platforms:
   - name: usergroupmgmtdebian10
     image: registry.gitlab.com/dvonessen/docker-molecule-nonroot/debian:10
     pre_build_image: true
+  - name: usergroupmgmtubuntu2004
+    image: registry.gitlab.com/dvonessen/docker-molecule-nonroot/ubuntu:20.04
+    pre_build_image: true
+  - name: usergroupmgmtarchlinux
+    image: registry.gitlab.com/dvonessen/docker-molecule-nonroot/archlinux:latest-systemd
+    pre_build_image: true
 provisioner:
   name: ansible
   config_options:

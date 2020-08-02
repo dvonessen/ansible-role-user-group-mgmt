@@ -9,11 +9,16 @@ galaxy_info:
   platforms:
     - name: EL
       versions:
-       - 8
+        - 8
     - name: Debian
       versions:
         - buster
-
+    - name: Ubuntu
+      versions:
+        - focal
+    - name: ArchLinux
+      versions:
+        - Any
   galaxy_tags: [user, group, mgmt, system, linux]
 
 dependencies: []
