@@ -11,6 +11,7 @@
     shell: "{{ user.value.shell | default('/bin/zsh') }}"
     create_home: "{{ user.value.create_home | default('yes') }}"
     groups: "{{ user.value.groups | default(omit) }}"
+    password: "{{ user.value.password | default(omit) }}"
     append: yes
     state: "{{ __user_state }}"
   become: true
